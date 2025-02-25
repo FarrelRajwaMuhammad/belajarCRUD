@@ -43,27 +43,27 @@ class Query
         return DB::select($sql, [$provinceid]);
     }
 
-    public function createCity($cityName, $provinceId)
+    public function createCity($cityName, $cityLevel, $provinceId)
     {
-        $sql = "INSERT INTO cities (namaKota, province_id) VALUES (:namaKota, :province_id)";
-        return DB::insert($sql, ['namaKota' => $cityName, 'province_id' => $provinceId]);
+        $sql = "INSERT INTO cities (nama_kota, province_id, level) VALUES (?, ?, ?)";
+        DB::insert($sql, [$cityName, $provinceId, $cityLevel]);
     }
 
     public function createProvince($provinceName)
     {
-        $sql = "INSERT INTO provinces (namaProvinsi) VALUES (:namaProvinsi)";
-        return DB::insert($sql, ['namaProvinsi' => $provinceName]);
+        $sql = "INSERT INTO provinces (nama_provinsi) VALUES (:nama_provinsi)";
+        return DB::insert($sql, ['nama_provinsi' => $provinceName]);
     }
 
     public function updateCity($id, $cityName)
     {
-        $sql = "UPDATE cities SET namaKota = ? WHERE id = ?";
+        $sql = "UPDATE cities SET nama_kota = ? WHERE id = ?";
         return DB::update($sql, [$cityName, $id]);
     }
 
     public function updateProvince($id, $provinceName)
     {
-        $sql = "UPDATE provinces SET namaProvinsi = ? WHERE id = ?";
+        $sql = "UPDATE provinces SET nama_provinsi = ? WHERE id = ?";
         return DB::update($sql, [$provinceName, $id]);
     }
 

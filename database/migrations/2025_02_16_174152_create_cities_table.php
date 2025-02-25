@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('cities', function (Blueprint $table) {
             $table->id();
-            $table->string("namaKota");
+            $table->string("nama_kota");
             $table->string("level");
             $table->foreignId("province_id")->constrained('provinces')->onDelete('cascade');
         });
